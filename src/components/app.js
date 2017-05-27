@@ -1,7 +1,9 @@
 import React from 'react';
 import { Grid, Row, Col, Clearfix } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 // custom components
+import Home from './home';
 import MainNav from './main-nav';
 
 export default class App extends React.Component {
@@ -13,6 +15,7 @@ export default class App extends React.Component {
 
 	render() {
 		return (
+			<Router>
 			<Grid>
 				<Row>
 					<Col md={6} mdPush={6} style={{textAlign: "right"}}>
@@ -22,7 +25,13 @@ export default class App extends React.Component {
 						<MainNav />
 					</Col>
 				</Row>
+				
+			<Route exact path="/" component={Home} />
+
 			</Grid>
+
+
+			</Router>
 		);
 	}
 }
