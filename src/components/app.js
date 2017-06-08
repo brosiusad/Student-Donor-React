@@ -3,8 +3,9 @@ import { Grid, Row, Col, Clearfix } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 // custom components
-import Home from './home';
 import MainNav from './main-nav';
+import Home from './home';
+import StudentList from './student-list';
 
 export default class App extends React.Component {
 	constructor(props) {
@@ -25,8 +26,9 @@ export default class App extends React.Component {
 						<MainNav />
 					</Col>
 				</Row>
-				
+
 			<Route exact path="/" component={Home} />
+			<Route exact path="/students" component={StudentList} />
 
 			</Grid>
 
