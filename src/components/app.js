@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Row, Col, Clearfix } from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 // custom components
 import MainNav from './main-nav';
@@ -27,9 +27,10 @@ export default class App extends React.Component {
 					</Col>
 				</Row>
 
-			<Route exact path="/" component={Home} />
-			<Route exact path="/students" component={StudentList} />
-
+			<Switch>
+				<Route exact path="/" component={Home} />
+				<Route exact path="/students" component={StudentList} />
+			</Switch>
 			</Grid>
 
 
