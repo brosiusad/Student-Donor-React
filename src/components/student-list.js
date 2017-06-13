@@ -6,18 +6,15 @@ export default class StudentList extends React.Component {
 
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			students: []
-		};
 	}
 
 	componentDidMount() {
-		this.getStudents.call(this);
+		this.props.getStudents();
+		console.log(this.props.location);
 	}
 
 	renderRows() {
-		return this.state.students.map((student) =>
+		return this.props.students.map((student) =>
 			<tr key={student.id}>
 				<td><a href={"students/" + student.id}>{student.firstname} {student.lastname}</a></td>
 				<td>{student.age}</td>
@@ -56,20 +53,6 @@ export default class StudentList extends React.Component {
 
 			</div>
 		);
-	}
-
-	getStudents() {
-		fetch('http://localhost:5000/students')
-		  .then(response => {
-		  	console.log('got response');
-		    return response.json()
-		  }).then(json => {
-		  	console.log('parsed json: ' + json);
-		  	this.setState({students: json});
-		  	//return json;
-		  }).catch(ex => {
-		    console.log('parsing failed', ex)
-		  })
 	}
 
 }

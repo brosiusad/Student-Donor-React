@@ -11,7 +11,9 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {};
+		this.state = {
+			students: []
+		};
 	}
 
 	render() {
@@ -29,7 +31,12 @@ export default class App extends React.Component {
 
 			<Switch>
 				<Route exact path="/" component={Home} />
-				<Route exact path="/students" component={StudentList} />
+				<Route exact path="/students" 
+					render={(r => <StudentList students = {this.state.students} 
+												getStudents = {this.getStudents.bind(this)}
+												{...r} />
+					)}
+				/>
 			</Switch>
 			</Grid>
 
@@ -37,4 +44,19 @@ export default class App extends React.Component {
 			</Router>
 		);
 	}
+
+	getStudents() {
+		fetch('http://localhost:5000/students')
+		  .then(response => {
+		  	console.log('got response');
+		    return response.json()
+		  }).then(json => {
+		  	console.log('parsed json: ' + json);
+		  	this.setState({students: json});
+		  	//return json;
+		  }).catch(ex => {
+		    console.log('parsing failed', ex)
+		  })
+	}
+
 }
