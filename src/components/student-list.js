@@ -1,6 +1,7 @@
 import React from 'react';
-import { Row, Col, Clearfix } from 'react-bootstrap';
-import { Button, Table } from 'react-bootstrap';
+import { Row, Col, Clearfix, Button, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 
 export default class StudentList extends React.Component {
 
@@ -16,7 +17,7 @@ export default class StudentList extends React.Component {
 	renderRows() {
 		return this.props.students.map((student) =>
 			<tr key={student.id}>
-				<td><a href={"students/" + student.id}>{student.firstname} {student.lastname}</a></td>
+				<td><LinkContainer to={`/students/${student.id}`}><Button bsStyle="link">{student.firstname} {student.lastname}</Button></LinkContainer></td>
 				<td>{student.age}</td>
 				<td>{student.street}</td>
 				<td>{student.city}</td>
