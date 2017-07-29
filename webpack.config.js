@@ -18,11 +18,11 @@ module.exports = {
 		extensions: ['*', '.js']
 	},
 	module: {
-		loaders: [
+		rules: [
 			{
 				test: /\.jsx?$/,
 				exclude: /node_modules/,
-				loader: ['react-hot-loader', 'babel-loader?presets[]=react,presets[]=es2015,presets[]=stage-2']
+				loader: ['react-hot-loader', 'babel-loader?presets[]=react,presets[]=es2015']
 			}
 		]
 	},
