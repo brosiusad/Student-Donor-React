@@ -32,7 +32,7 @@ export default class StudentList extends React.Component {
 			<div>
 			<Row>
 				<Col md={6} mdPush={6} style={{textAlign: "right"}}>
-						<Button bsStyle="success" href="/newStudent">New Student</Button>
+					<Button bsStyle="success" href="/newStudent">New Student</Button>
 				</Col>
 				<Col md={6} mdPull={6}>
 					<h3>Students</h3>
