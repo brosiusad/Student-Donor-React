@@ -37,8 +37,12 @@ export default class StudentDetail extends React.Component {
 		return (
             <div>
             <Row style={styles.borderBottom}>
-                <LinkContainer to="/student/edit/:id" style={styles.floatRight}><Button>Edit Student</Button></LinkContainer>
-                <h3>{`${this.props.student.firstname} ${this.props.student.lastname}`}</h3>
+                <Col md={6} mdPush={6} style={styles.alignRight}>
+                    <LinkContainer to="/student/edit/:id" style={styles.floatRight}><Button>Edit Student</Button></LinkContainer>
+                </Col>
+                <Col md={6} mdPull={6}>
+                    <h3>{`${this.props.student.firstname} ${this.props.student.lastname}`}</h3>
+                </Col>
             </Row>
 
             <Row style={styles.addMargin}>

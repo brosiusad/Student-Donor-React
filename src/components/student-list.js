@@ -3,6 +3,13 @@ import { Row, Col, Clearfix, Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 
+
+const styles = {
+    floatRight: {
+        float: "right"
+    }
+}
+
 export default class StudentList extends React.Component {
 
 	constructor(props) {
@@ -32,7 +39,7 @@ export default class StudentList extends React.Component {
 			<div>
 			<Row>
 				<Col md={6} mdPush={6} style={{textAlign: "right"}}>
-					<Button bsStyle="success" href="/newStudent">New Student</Button>
+					<LinkContainer to="/student/new" style={styles.floatRight}><Button bsStyle="success">New Student</Button></LinkContainer>
 				</Col>
 				<Col md={6} mdPull={6}>
 					<h3>Students</h3>
