@@ -26,7 +26,8 @@ export default class MainNav extends React.Component {
 	}
 
 	handleNavEvent(eventKey) {
-		console.log('this is: ', this);
-		this.state.activeNavKey = eventKey;
+		this.setState({
+			activeNavKey: eventKey
+		});
 	}
 }
