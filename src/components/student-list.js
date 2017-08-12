@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Clearfix, Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
-
+import StudentNew from './student-new';
 
 const styles = {
     floatRight: {
@@ -14,11 +14,15 @@ export default class StudentList extends React.Component {
 
 	constructor(props) {
 		super(props);
+		this.state = {
+			showModal: false
+		};
+
+		this.showModal = this.showModal.bind(this);
 	}
 
 	componentDidMount() {
 		this.props.getStudents();
-		console.log(this.props.location);
 	}
 
 	renderRows() {
@@ -34,12 +38,23 @@ export default class StudentList extends React.Component {
 		);
 	}
 
+	showModal() {
+		this.setState({ showModal: true});
+	}
+
+	closeModal() {
+		this.setState({ showModal: false});
+	}
+
 	render() {
 		return (
 			<div>
+
+			<StudentNew show={this.state.showModal} closeModal={this.closeModal.bind(this)} />
+
 			<Row>
 				<Col md={6} mdPush={6} style={{textAlign: "right"}}>
-					<LinkContainer to="/student/new" style={styles.floatRight}><Button bsStyle="success">New Student</Button></LinkContainer>
+					<Button bsStyle="success" onClick={this.showModal}>New Student</Button>
 				</Col>
 				<Col md={6} mdPull={6}>
 					<h3>Students</h3>
