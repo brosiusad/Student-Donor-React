@@ -16,7 +16,8 @@ export default class StudentHome extends React.Component {
 			<Switch>
 				<Route exact path="/students" 
 					render={(r => <StudentList students = {this.props.students} 
-												getStudents = {this.props.getStudents}
+												getStudents = {this.props.getStudents} 
+												saveStudent = {this.props.saveStudent}
 												{...r} />
 							)}
 				/>

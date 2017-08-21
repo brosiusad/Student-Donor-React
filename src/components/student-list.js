@@ -50,7 +50,7 @@ export default class StudentList extends React.Component {
 		return (
 			<div>
 
-			<StudentNew show={this.state.showModal} closeModal={this.closeModal.bind(this)} />
+			<StudentNew show={this.state.showModal} closeModal={this.closeModal.bind(this)} saveStudent = {this.props.saveStudent} />
 
 			<Row>
 				<Col md={6} mdPush={6} style={{textAlign: "right"}}>

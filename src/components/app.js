@@ -36,7 +36,8 @@ export default class App extends React.Component {
 					render={(r => <StudentHome students = {this.state.students} 
 												getStudents = {this.getStudents.bind(this)} 
 												student = {this.state.student} 
-												getStudent = {this.getStudent.bind(this)}
+												getStudent = {this.getStudent.bind(this)} 
+												saveStudent = {this.saveStudent.bind(this)}
 												{...r} />
 					)}
 				/>
@@ -74,6 +75,18 @@ export default class App extends React.Component {
 		  }).catch(ex => {
 		    console.log('parsing failed', ex)
 		  })
+	}
+
+	saveStudent(student) {
+		fetch('http://localhost:5000/students/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(student)
+		}).then(response => {
+			console.log(response);
+		})
 	}
 
 }
