@@ -57,7 +57,6 @@ export default class App extends React.Component {
 		  }).then(json => {
 		  	console.log('parsed json: ' + json);
 		  	this.setState({students: json});
-		  	//return json;
 		  }).catch(ex => {
 		    console.log('parsing failed', ex)
 		  })
@@ -71,7 +70,6 @@ export default class App extends React.Component {
 		  }).then(json => {
 		  	console.log('parsed json: ' + json);
 		  	this.setState({student: json});
-		  	//return json;
 		  }).catch(ex => {
 		    console.log('parsing failed', ex)
 		  })
@@ -86,6 +84,9 @@ export default class App extends React.Component {
 			body: JSON.stringify(student)
 		}).then(response => {
 			console.log(response);
+
+			// re-fetch students from server
+			this.getStudents();
 		})
 	}
 

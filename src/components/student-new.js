@@ -73,7 +73,7 @@ export default class StudentNew extends React.Component {
 						</FormGroup>
 						<FormGroup controlId="street">
 							<Col componentClass={ControlLabel} sm={4}>
-								City
+								Street
 							</Col>
 							<Col sm={8}>
 								<FormControl type="text" inputRef={input => {this.streetNode = input}} placeholder="Street" />

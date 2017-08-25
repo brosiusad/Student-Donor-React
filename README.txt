@@ -10,6 +10,6 @@ service is served on localhost:5000
 
 2. start react app. first, ensure webpack-dev-server is saved globally
 > cd /path/to/this/app
-> webpack-dev-server
+> webpack-dev-server --history-api-llback
 
 app is served on localhost:8080
