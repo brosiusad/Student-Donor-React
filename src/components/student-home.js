@@ -25,6 +25,7 @@ export default class StudentHome extends React.Component {
 				<Route path="/students/:id" 
 					render={(r => <StudentDetail student={this.props.student} 
 												getStudent = {this.props.getStudent} 
+												deleteStudent = {this.props.deleteStudent}
 												{...r} />
 							)} 
 				/>

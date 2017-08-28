@@ -38,6 +38,7 @@ export default class App extends React.Component {
 												student = {this.state.student} 
 												getStudent = {this.getStudent.bind(this)} 
 												saveStudent = {this.saveStudent.bind(this)}
+												deleteStudent = {this.deleteStudent.bind(this)}
 												{...r} />
 					)}
 				/>
@@ -82,6 +83,20 @@ export default class App extends React.Component {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(student)
+		}).then(response => {
+			console.log(response);
+
+			// re-fetch students from server
+			this.getStudents();
+		})
+	}
+
+	deleteStudent(id) {
+		fetch('http://localhost:5000/students/' + parseInt(id, 10), {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json'
+			}
 		}).then(response => {
 			console.log(response);
 
