@@ -51,7 +51,7 @@ export default class App extends React.Component {
 	}
 
 	getStudents() {
-		fetch('http://localhost:5000/students')
+		fetch('http://localhost:5001/students')
 		  .then(response => {
 		  	console.log('got response');
 		    return response.json()
@@ -64,7 +64,7 @@ export default class App extends React.Component {
 	}
 
 	getStudent(id) {
-		fetch('http://localhost:5000/students/' + parseInt(id, 10))
+		fetch('http://localhost:5001/students/' + parseInt(id, 10))
 		  .then(response => {
 		  	console.log('got response');
 		    return response.json()
@@ -77,7 +77,7 @@ export default class App extends React.Component {
 	}
 
 	saveStudent(student) {
-		fetch('http://localhost:5000/students/', {
+		fetch('http://localhost:5001/students/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ export default class App extends React.Component {
 	}
 
 	deleteStudent(id) {
-		fetch('http://localhost:5000/students/' + parseInt(id, 10), {
+		fetch('http://localhost:5001/students/' + parseInt(id, 10), {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json'
