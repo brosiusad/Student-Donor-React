@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Clearfix, Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
-import StudentNew from './student-new';
+import StudentEdit from './student-edit';
 
 const styles = {
     floatRight: {
@@ -22,6 +22,7 @@ export default class StudentList extends React.Component {
 	}
 
 	componentDidMount() {
+		this.props.clearStudent();
 		this.props.getStudents();
 	}
 
@@ -50,7 +51,7 @@ export default class StudentList extends React.Component {
 		return (
 			<div>
 
-			<StudentNew show={this.state.showModal} closeModal={this.closeModal.bind(this)} saveStudent={this.props.saveStudent} />
+			<StudentEdit student={this.props.student} mode="new" show={this.state.showModal} closeModal={this.closeModal.bind(this)} createStudent={this.props.createStudent} />
 
 			<Row>
 				<Col md={6} mdPush={6} style={{textAlign: "right"}}>

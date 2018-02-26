@@ -13,7 +13,16 @@ export default class App extends React.Component {
 
 		this.state = {
 			students: [],
-			student: {}
+			student: {
+				id: '',
+				firstname: '',
+				lastname: '',
+				street: '',
+				city: '',
+				state: '',
+				zip: '',
+				age: ''
+			}
 		};
 	}
 
@@ -34,10 +43,12 @@ export default class App extends React.Component {
 				<Route exact path="/" component={Home} />
 				<Route path="/students" 
 					render={(r => <StudentHome students = {this.state.students} 
+												clearStudent = {this.clearStudent.bind(this)}
 												getStudents = {this.getStudents.bind(this)} 
 												student = {this.state.student} 
 												getStudent = {this.getStudent.bind(this)} 
-												saveStudent = {this.saveStudent.bind(this)}
+												createStudent = {this.createStudent.bind(this)}
+												updateStudent = {this.updateStudent.bind(this)}
 												deleteStudent = {this.deleteStudent.bind(this)}
 												{...r} />
 					)}
@@ -48,6 +59,21 @@ export default class App extends React.Component {
 
 			</Router>
 		);
+	}
+
+	clearStudent() {
+		this.setState({
+			student: {
+				id: '',
+				firstname: '',
+				lastname: '',
+				street: '',
+				city: '',
+				state: '',
+				zip: '',
+				age: ''
+			}
+		});
 	}
 
 	getStudents() {
@@ -76,7 +102,7 @@ export default class App extends React.Component {
 		  })
 	}
 
-	saveStudent(student) {
+	createStudent(student) {
 		fetch('http://localhost:5001/students/', {
 			method: 'POST',
 			headers: {
@@ -88,6 +114,21 @@ export default class App extends React.Component {
 
 			// re-fetch students from server
 			this.getStudents();
+		})
+	}
+
+	updateStudent(student) {
+		fetch('http://localhost:5001/students/' + parseInt(student.id, 10), {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(student)
+		}).then(response => {
+			console.log(response);
+
+			// re-fetch student from server
+			this.getStudent(student.id);
 		})
 	}
 

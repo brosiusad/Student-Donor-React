@@ -1,7 +1,8 @@
 import React from 'react';
 import { Row, Col, Button, ButtonToolbar } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import DeleteModal from './delete-modal'
+import StudentEdit from './student-edit';
+import DeleteModal from './delete-modal';
 
 const styles = {
     floatRight: {
@@ -27,16 +28,19 @@ export default class StudentDetail extends React.Component {
 		super(props);
 
         this.state = {
-            showDeleteModal: false
+            showDeleteModal: false,
+            showEditModal: false
         }
 
         this.openDeleteModal = this.openDeleteModal.bind(this);
         this.closeDeleteModal = this.closeDeleteModal.bind(this);
-	}
+        this.showEditModal = this.showEditModal.bind(this);
+        this.closeEditModal = this.closeEditModal.bind(this);
+    }
 
-	componentDidMount() {
-		this.props.getStudent(this.props.match.params.id);
-	}
+    componentDidMount() {
+        this.props.getStudent(this.props.match.params.id);
+    }
 
     openDeleteModal() {
         this.setState({
@@ -50,6 +54,14 @@ export default class StudentDetail extends React.Component {
         });
     }
 
+    showEditModal() {
+        this.setState({ showEditModal: true});
+    }
+
+    closeEditModal() {
+        this.setState({ showEditModal: false});
+    }
+
     performDeletion() {
         this.props.deleteStudent(this.props.student.id);
         this.closeDeleteModal();
@@ -61,6 +73,8 @@ export default class StudentDetail extends React.Component {
 		return (
             <div>
 
+            <StudentEdit student={student} mode="edit" show={this.state.showEditModal} closeModal={this.closeEditModal.bind(this)} updateStudent={this.props.updateStudent} />
+
             <DeleteModal show={this.state.showDeleteModal} 
                 objectName="Student"
                 closeDeleteModal={this.closeDeleteModal.bind(this)} 
@@ -69,7 +83,7 @@ export default class StudentDetail extends React.Component {
             <Row style={styles.borderBottom}>
                 <Col md={6} mdPush={6} style={styles.alignRight}>
                     <ButtonToolbar style={styles.floatRight}>
-                        <LinkContainer to="/student/edit/:id" ><Button>Edit Student</Button></LinkContainer>
+                        <Button bsStyle="default" onClick={this.showEditModal}>Edit</Button>
                         <Button bsStyle="danger" onClick={this.openDeleteModal}>Delete</Button>
                     </ButtonToolbar>
                 </Col>
